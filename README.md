@@ -1,11 +1,12 @@
 # MiBoyDaily
+
 利用小米人在传感器实现每日自动化
 
 ## 需要
 
 1. 小米人在传感器
 2. 小爱音箱 Pro 用来作为蓝牙 mesh
-3, 你想用的任何小米能连接蓝牙的设备
+3. 你想用的任何小米能连接蓝牙的设备
 
 ## 安装
 
@@ -16,4 +17,6 @@
 5. 更改代码的 schedule 自行添加 task
 6. pdm run miboy_daily.py
 
+我的 tg [频道](https://t.me/hyi0618)每天自动的早起问候就是由该自动化发布的
 
+![image](https://github.com/user-attachments/assets/14a10cae-2de9-4cf1-85e7-5f82cf5f171f)
