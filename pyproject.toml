@@ -1,19 +1,19 @@
 [project]
 name = "MiBoyDaily"
 version = "0.1.0"
-description = "Miboy daily"
+description = "Default template for PDM package"
 authors = [
     {name = "yihong0618", email = "zouzou0208@gmail.com"},
 ]
-dependencies = ["miservice-fork>=2.7.1", "schedule>=1.2.2", "pytz>=2024.2"]
-requires-python = ">=3.13"
+dependencies = [
+    "miservice-fork>=2.7.1",
+    "schedule>=1.2.2",
+    "pytz>=2024.2",
+]
+requires-python = "==3.10.*"
 readme = "README.md"
 license = {text = "MIT"}
 
-[build-system]
-requires = ["pdm-backend"]
-build-backend = "pdm.backend"
-
-
 [tool.pdm]
 distribution = true
+package-type = "application"
