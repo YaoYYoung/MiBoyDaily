@@ -66,6 +66,7 @@ class MiBoyDaily:
             )
 
     async def get_am_i_here(self):
+        # 人在传感器的应用 1 为人在 0 为人不在
         data = await miio_command(
             self.miio_service,
             self.here_did,
@@ -135,7 +136,7 @@ async def morning_task(account, password, here_did, speaker_did):
         current_hour = current_time.hour
 
         # if current hour is after 6 AM, stop the task
-        if current_hour >= 6:
+        if current_hour >= 7:
             print("After 6 AM, stopping...")
             await miboy.close()
             break
