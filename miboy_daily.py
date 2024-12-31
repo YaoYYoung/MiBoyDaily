@@ -17,8 +17,9 @@ if not GITHUB_TOKEN:
     raise Exception("GITHUB_TOKEN is not set")
 
 # change it to yours
-REPO_NAME = "yihong0618/2024"
-ACTION_ID = "81220935"
+REPO_NAME = "yihong0618/2025"
+UP_ACTION_ID = "135744271"
+WORD_ACTION_ID = "135744272"
 
 
 class MiBoyDaily:
@@ -80,11 +81,11 @@ class MiBoyDaily:
     async def say_good_morning_to_me(self, value):
         await self.mina_service.text_to_speech(self.speaker_did, value)
 
-    async def call_github_action_workflow(self):
+    async def call_github_action_workflow(self, action_id=UP_ACTION_ID):
         """
         Trigger GitHub Actions workflow using REST API
         """
-        url = f"https://api.github.com/repos/{REPO_NAME}/actions/workflows/{ACTION_ID}/dispatches"
+        url = f"https://api.github.com/repos/{REPO_NAME}/actions/workflows/{action_id}/dispatches"
         headers = {
             "Accept": "application/vnd.github.v3+json",
             "Authorization": f"token {GITHUB_TOKEN}",
@@ -105,6 +106,9 @@ class MiBoyDaily:
 
     async def say_hello_to_me_when_i_am_back(self):
         await self.say_good_morning_to_me("早上好")
+        await self.mina_service.play_by_music_url(
+            self.speaker_did, "http://192.168.6.212:8000/public/z1.mp3"
+        )
 
 
 def parse_args():
@@ -152,6 +156,8 @@ async def morning_task(account, password, here_did, speaker_did):
             print("I am up")
             await miboy.say_hello_to_me_when_i_am_back()
             await miboy.call_github_action_workflow()
+            await asyncio.sleep(2)
+            await miboy.call_github_action_workflow(action_id=WORD_ACTION_ID)
             await miboy.close()
             break
         elif data and data[0] == 0:
